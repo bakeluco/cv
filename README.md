@@ -1,3 +1,3 @@
 # Curriculum Vitae / Résumé
 
-- Luciano Cassinerio
+- Vue.js & Vuetify
