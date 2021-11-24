@@ -1,1 +1,3 @@
-# cv
+# Curriculum Vitae / Résumé
+
+- Luciano Cassinerio

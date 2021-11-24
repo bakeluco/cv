@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Résumé | Cassinerio Luciano</title>
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-main>
+                <!-- HEADER -->
+                <v-container fluid fill-height>
+                    <v-col cols="12" lg="4" md="4" sm="6" class="mx-auto" >
+                        <!-- PERSONAL INFO, CONTACT, PROFILE PIC -->
+                        <v-card class="">
+                            <v-card-title class="align-center justify-center">
+                                Curriculum Vitae / Résumé
+                            </v-card-title>
+                            <v-divider color="black" class="my-1"></v-divider>
+                            <v-img src="./src/luco.jpg" title="Luciano Cassinerio" max-width="300px" class="rounded-circle mx-12 my-4 elevation-6 mx-auto"></v-img>
+                            <v-card-title class="text-lg-h3 justify-center mt-lg-8 ">{{personal[0]}}</v-card-title>
+                            <v-card-title class="text-lg-h4 justify-center ">{{personal[1]}}</v-card-title>
+                            <v-card-title class="text-lg-h6 justify-center ">{{personal[2]}}</v-card-title>
+                            <v-card-actions class="justify-center">
+                                <div v-for="item in contact" v-bind:key="item.key">
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-btn v-bind="attrs" icon v-on="on" :href="item.href"
+                                            target="_blank">
+                                            <v-icon>mdi-{{item.icon}}</v-icon>
+                                        </v-btn>
+                                    </template>
+                                        <span>{{item.title}}</span>
+                                    </v-tooltip>
+                                </div>
+                            </v-card-actions>
+                        </v-card>
+                        <!-- ABOUT ME -->
+                        <v-card class="mt-6">
+                            <v-card-title class="text-overline">About Me</v-card-title>
+                            <v-card-text>{{profile}}</v-card-text>  
+                        </v-card>
+                        <!-- WORK EXPERIENCE -->
+                        <v-card class="mt-6">
+                            <v-card-title class="text-overline align-center justify-center">
+                                Work Experience
+                            </v-card-title> 
+                            <v-card-text>
+                                <div v-for="(job,index) in jobs" v-bind:key="index">
+                                    <v-card-title>{{job.title}}</v-card-title>
+                                    <v-card-text>{{job.subtitle}}</v-card-text>
+                                    <ul v-for="(item,itemIndex) in job.items" v-bind:key="itemIndex">
+                                        <li>{{item}}</li>
+                                    </ul>
+                                </div>
+                            </v-card-text>
+                        </v-card>
+                        <!-- EDUCATION -->
+                        <v-card class="mt-6">
+                            <v-card-title class="text-overline align-center justify-center">
+                                Education
+                            </v-card-title> 
+                            <v-card-text>
+                                <div v-for="(school,index) in education" v-bind:key="index">
+                                    <v-card-title>{{school.title}}</v-card-title>
+                                    <v-card-text>{{school.subtitle}}</v-card-text>
+                                    <ul>
+                                        <li>{{school.items}}</li>
+                                    </ul>
+                                </div>
+                            </v-card-text>
+                        </v-card>
+                        <!-- SKILLS -->
+                        <v-card class="mt-6">
+                            <v-card-title class="text-overline align-center justify-center">
+                                Skills
+                            </v-card-title> 
+                            <v-card-text>
+                                <ul v-for="(skill,index) in skills" v-bind:key="index">
+                                    <li>{{skill}}</li>
+                                </ul>
+                            </v-card-text>
+                        </v-card>
+                        <!-- FRAMEWORKS -->
+                        <v-card class="mt-6">
+                            <v-card-title class="text-overline align-center justify-center">
+                                Frameworks
+                            </v-card-title> 
+                            <v-card-text>
+                                <ul v-for="(framework,index) in frameworks" v-bind:key="index">
+                                    <li>{{framework}}</li>
+                                </ul>
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                </v-container>
+            </v-main>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script type="module">
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: {
+                personal: ['Luciano Cassinerio', 'Web developer', 'Córdoba, Argentina.',],
+                contact: [
+                    { key: 3, title: 'Website', icon: 'web', href: 'https://bakeluco.com.ar' },
+                    { key: 2, title: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/bakeluco/' },
+                    { key: 1, title: 'Linkedin', icon: 'linkedin', href: 'https://linkedin.com/in/luciano-cassinerio-b73777223/' },
+                ],
+                profile: 'I am a Full Stack Web Developer with knowledge in technologies such as : Vue | React | Node | Javascript | SQL',
+                jobs: [
+                    { title: 'Full Stack Developer', subtitle: 'Policía de la Provincia de Córdoba | Mar 2020 - present', items: [
+                        'Front end: Vue.js - Vuetify - HTML - CSS', 
+                        'Back end: ASP.NET - C#', 
+                        'DB : Microsoft SQL',
+                    ] },
+                    { title: 'Administrative Assistant', subtitle: 'Confederación Argentina de Judo | 2013 - present', items: [
+                        'General Administrative Services', 
+                        'Google Workspace Super Admin | 2020 - present', 
+                        'Domain maintenance | 2020 - present',
+                    ] },
+                    { title: 'Administrative Assistant', subtitle: 'Peluquería Cassineri | 2013 - 2021', items: [
+                        'Payments', 'Stock', 'General Administrative Services'
+                    ] },
+                ],
+                education: [
+                    { title: 'Udemy', subtitle: 'Web development | 2020 - present', items: 'Vue | React | Node | MongoDB' },
+                    { title: 'Digital House', subtitle: 'Full Stack Web Development | 2019 - 2020', items: 'Php | Laravel | MySql | HTML | CSS | Bootstrap | Javascript | Git' },
+                    { title: 'Cambridge University', subtitle: 'Proficiency - ESOL 3 - CEFR C2 | 2016 - 2016', items: 'First 2014 - 2014| Advanced 2015 - 2015 | Proficiency 2016 - 2016' },
+                    { title: 'U.T.N - F.R.C', subtitle: 'Systems Engineering | 2013 - present', items: 'Software development' },
+                    { title: 'Cultura Britanica', subtitle : 'English Language', items: 'Language school'},
+                    { title: 'Colegio Nacional de Monserrat', subtitle : 'Bachiller Humanista', items: 'Highschool'},
+                ],
+                skills : [
+                    'Full Stack Web Development',
+                    'English & Spanish Fluency',
+                    'Javascript Frameworks'
+                ],
+                frameworks : [
+                    'Javascript | Vue | React | Node',
+                    'Java | C#',
+                    'Rest APIs',
+                    'HTML | CSS | Bootstrap | Vuetify',
+                    'SQL | MySQL | MongoDB',
+                    'Github | Gitlabs | Slack | Trello',
+                    'Photoshop | PDFelement | Blender',
+                    'Office Suite | Microfost | Libre | Google',
+                ],
+            },
+            methods: {
+
+            },
+            mounted() {
+            }
+        })
+    </script>
+    <style scope>
+        #app {
+            background: rgb(2, 0, 36);
+            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(133, 118, 87, 1) 0%, rgba(209, 201, 190, 1) 100%);
+        }
+    </style>
+</body>
+
+</html>
